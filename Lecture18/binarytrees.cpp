@@ -283,12 +283,36 @@ node* createBST()
 	return root;	
 }
 
+node* arrToBst(int *arr,int s,int e)
+{
+	if(s>e)
+	{
+		return NULL;
+	}
+
+	int mid=(s+e)/2;
+	node* root=new node(arr[mid]);
+	root->left=arrToBst(arr,s,mid-1);
+	root->right=arrToBst(arr,mid+1,e);
+
+	return root;
+
+}
+
+
 
 int main()
 {
  
 	// node *root=createTree();
 
+
+	int arr[]={1,2,3,4,5,6,7,8,9,10};
+	int n=sizeof(arr)/sizeof(int);
+
+	node* root=arrToBst(arr,0,n-1);
+
+	levelOrder(root);
 	
 	// int in[]={8,4,2,9,5,1,6,3,7};
 	// int n=sizeof(in)/sizeof(int);
@@ -296,18 +320,18 @@ int main()
 	// node* root=builtTree(in,0,n-1);
 	// levelOrder(root);
 
-	node* root=createBST();
+	// node* root=createBST();
 
-	levelOrder(root);
+	// levelOrder(root);
 
-	if(isBST(root))
-	{
-		cout<<"Yes"<<endl;
-	}
-	else
-	{
-		cout<<"No"<<endl;
-	}
+	// if(isBST(root))
+	// {
+	// 	cout<<"Yes"<<endl;
+	// }
+	// else
+	// {
+	// 	cout<<"No"<<endl;
+	// }
 
 	// cout<<"preOrder traversal is  : ";
 	// preOrder(root);
